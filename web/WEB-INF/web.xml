@@ -20,9 +20,25 @@
         <servlet-name>IndexController</servlet-name>
         <servlet-class>controller.IndexController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubjectToTestController</servlet-name>
+        <servlet-class>controller.SubjectToTestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionController</servlet-name>
+        <servlet-class>controller.QuestionController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubjectToTestController</servlet-name>
+        <url-pattern>/SubjectToTest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionController</servlet-name>
+        <url-pattern>/Question</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

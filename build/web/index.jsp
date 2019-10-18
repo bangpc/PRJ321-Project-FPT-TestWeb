@@ -13,16 +13,18 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <form action="home">
         <a href="#">Login</a> 
         <a href="#">Register</a>
         <a href="#">Response</a>
         <a href="https://daihoc.fpt.edu.vn/">FPT Home Page</a><p>
         <table>
             <tr ><input type="text" name="SearchSubject"/>&nbsp;<button>Search</button></tr><tr></tr>
-            <c:forEach var="x" items="${Subject}">
-            <td>x.Name</td>
+            <c:forEach var="x" items="${listSubject}">
+            <td><a href="SubjectToTest?subjectID=${x.getSubjectID()}">${x.getSubjectName()}</a></td>
             </c:forEach>
         </table>
-
+        </form>
+        <h1>${tester}</h1>
     </body>
 </html>

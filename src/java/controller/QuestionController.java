@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.SubjectDAO;
+import dao.QuestionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author dell
+ * @author BangPC
  */
-public class IndexController extends HttpServlet {
+public class QuestionController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,19 +33,12 @@ public class IndexController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            if (request.getParameter("subjectID") != null) {
-//                SubjectDAO sd = new SubjectDAO();
-                request.setAttribute("tester", request.getParameter("subjectID"));
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
-            }
-            SubjectDAO sd = new SubjectDAO();
-            request.setAttribute("listSubject", sd.listSubject());
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            int testID = Integer.valueOf(request.getParameter("testID"));
+            QuestionDAO qd = new QuestionDAO();
+            request.setAttribute("listQuestion", qd.listQuestionByTest(testID));
+            RequestDispatcher rd = request.getRequestDispatcher("Question.jsp");
             rd.forward(request, response);
-
         } catch (Exception e) {
-            response.getWriter().print(e);
         }
     }
 

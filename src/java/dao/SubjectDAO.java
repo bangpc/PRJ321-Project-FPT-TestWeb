@@ -11,25 +11,21 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Subject;
-import model.Test;
 
 /**
  *
- * @author dell
+ * @author BangPC
  */
-public class TestDAO {
-    public List<Test> listTestBySubject(int SubjectID) throws Exception{
-        List<Test> ls = new ArrayList<>();
+public class SubjectDAO {
+    public List<Subject> listSubject() throws Exception{
+        List<Subject> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql="select * from Test where subjectID="+SubjectID;
+        String sql="select * from Subject";
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
         while(rs.next()){
-            int testId = rs.getInt("testID");
-            String name = rs.getString("testName");
-            int subjectID = rs.getInt("subjectID");
-            String subjectContent = rs.getString("testContent");
-            int difficulty = rs.getInt("difficulty");
-            ls.add(new Test(testId, name, subjectID, subjectContent, difficulty));
+            int id = rs.getInt("subjectID");
+            String name = rs.getString("subjectName");
+            ls.add(new Subject(id, name));
         }
         rs.close();
         conn.close();
