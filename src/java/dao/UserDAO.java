@@ -9,6 +9,6 @@ package dao;
  *
  * @author dell
  */
-public class NewClass {
+public class UserDAO {
     
 }

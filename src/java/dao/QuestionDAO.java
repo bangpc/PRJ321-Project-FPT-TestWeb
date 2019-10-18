@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package filter;
+package dao;
 
 /**
  *
  * @author dell
  */
-public class NewClass {
+public class QuestionDAO {
     
 }
