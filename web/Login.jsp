@@ -22,7 +22,7 @@
             <tr>
                 <th></th><th></th>
             </tr>
-            <tr><td>User Name</td> <td><input type="text" name="userName" /></td></tr>
+            <tr><td>User Name</td> <td><input type="text" name="userName" value="${userRegister}"/></td></tr>
             <tr><td>Password</td>  <td><input type="password" name="password" /></td></tr>        
         </table>
         <p><input type="submit" value="Login" name="Login" /></p>

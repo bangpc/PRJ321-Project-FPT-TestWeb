@@ -72,7 +72,9 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <tr>\n");
       out.write("                <th></th><th></th>\n");
       out.write("            </tr>\n");
-      out.write("            <tr><td>User Name</td> <td><input type=\"text\" name=\"userName\" /></td></tr>\n");
+      out.write("            <tr><td>User Name</td> <td><input type=\"text\" name=\"userName\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${userRegister}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"/></td></tr>\n");
       out.write("            <tr><td>Password</td>  <td><input type=\"password\" name=\"password\" /></td></tr>        \n");
       out.write("        </table>\n");
       out.write("        <p><input type=\"submit\" value=\"Login\" name=\"Login\" /></p>\n");
@@ -101,14 +103,14 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
     _jspx_th_c_if_0.setPageContext(_jspx_page_context);
     _jspx_th_c_if_0.setParent(null);
-    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty test}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty error}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("            ");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${test}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("\n");
+        out.write("            <p style=\"color: red\">");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${error}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("</p>\n");
         out.write("        ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)

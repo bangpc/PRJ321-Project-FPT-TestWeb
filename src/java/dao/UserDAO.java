@@ -7,8 +7,10 @@ package dao;
 
 import context.DBContext;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import model.User;
 
@@ -33,5 +35,19 @@ public class UserDAO {
         rs.close();
         conn.close();
         return ls;
+    }
+    
+    public void insert(String userName,String password, String email) throws Exception{
+        String sql="insert into User values(?, ?, ?, ?)";
+        Connection con = new DBContext().getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, userName);
+        ps.setString(2,password);
+        ps.setString(3, email);
+        ps.setInt(4, 2);
+        ps.executeUpdate();
+        ps.close();
+        con.close();
+        
     }
 }

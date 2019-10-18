@@ -5,12 +5,17 @@
  */
 package controller;
 
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.User;
 
 /**
  *
@@ -31,7 +36,28 @@ public class RegisterController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            
+            UserDAO ud = new UserDAO();
+            boolean isValidUser = false;
+            String userName = request.getParameter("userName");
+            String password = request.getParameter("password");
+            String email = request.getParameter("email");
+            List<User> l = new ArrayList<>();
+            l=ud.listUser();
+            for(User u :l){
+                if(u.getUsername().equalsIgnoreCase(userName) && u.getPassword().equals(password)){
+                    isValidUser =true;
+                    break;
+                }
+            }
+            if(isValidUser){
+                request.setAttribute("error", "Username already exist");
+                RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
+                rd.forward(request, response);
+            }else{
+                request.setAttribute("userRegister", request.getParameter(userName));
+                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                rd.forward(request, response);
+            }
         } catch (Exception e) {
         }
     }
