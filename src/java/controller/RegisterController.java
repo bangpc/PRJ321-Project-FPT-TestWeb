@@ -5,10 +5,8 @@
  */
 package controller;
 
-import dao.SubjectDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author dell
+ * @author BangPC
  */
-public class IndexController extends HttpServlet {
+public class RegisterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,13 +32,7 @@ public class IndexController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             
-            SubjectDAO sd = new SubjectDAO();
-            request.setAttribute("listSubject", sd.listSubject());
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
-
         } catch (Exception e) {
-            response.getWriter().print(e);
         }
     }
 

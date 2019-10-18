@@ -13,18 +13,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <table>
+        <table border="1">
             <tr>
                 <th>Question</th>
             </tr>
-        <c:forEach var="x" items="${listQuestion}">
-            <td>${x.questionContent}
-                <p>A. ${x.opt1}</p>
-                <p>B. ${x.opt2}</p>
-                <p>C. ${x.opt3}</p>
-                <p>D. ${x.opt4}</p>
-            </td>
-        </c:forEach>
+            <c:forEach var="x" items="${listQuestion}">
+                <tr>
+                <td>${x.questionContent}
+                    <p>A. ${x.opt1}</p>
+                    <p>B. ${x.opt2}</p>
+                    <p>C. ${x.opt3}</p>
+                    <p>D. ${x.opt4}</p>
+                </td>
+                </tr>
+            </c:forEach>
         </table>
     </body>
 </html>

@@ -5,20 +5,23 @@
  */
 package controller;
 
-import dao.SubjectDAO;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.User;
 
 /**
  *
- * @author dell
+ * @author BangPC
  */
-public class IndexController extends HttpServlet {
+public class LoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +36,27 @@ public class IndexController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            
-            SubjectDAO sd = new SubjectDAO();
-            request.setAttribute("listSubject", sd.listSubject());
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
-
+            boolean isValidUser = false;
+            String userName = request.getParameter("userName");
+            String password = request.getParameter("password");
+            UserDAO ud = new UserDAO();
+            List<User> l = new ArrayList<>();
+            l=ud.listUser();
+            for(User u :l){
+                if(u.getUsername().equalsIgnoreCase(userName) && u.getPassword().equals(password)){
+                    isValidUser =true;
+                    break;
+                }
+            }
+            if(isValidUser){
+                request.setAttribute("test", userName);
+                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                rd.forward(request, response);
+            }else{
+                request.setAttribute("error", "Invalid username or password");
+                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                rd.forward(request, response);
+            }
         } catch (Exception e) {
             response.getWriter().print(e);
         }

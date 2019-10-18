@@ -28,6 +28,14 @@
         <servlet-name>QuestionController</servlet-name>
         <servlet-class>controller.QuestionController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controller.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>controller.RegisterController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>QuestionController</servlet-name>
         <url-pattern>/Question</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/LoginFPT</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/RegisterFPT</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
