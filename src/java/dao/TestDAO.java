@@ -7,6 +7,7 @@ package dao;
 
 import context.DBContext;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,13 @@ import model.Test;
  * @author dell
  */
 public class TestDAO {
-    public List<Test> listTestBySubject(int SubjectID) throws Exception{
+
+    public List<Test> listTestBySubject(int SubjectID) throws Exception {
         List<Test> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql="select * from Test where subjectID="+SubjectID;
+        String sql = "select * from Test where subjectID=" + SubjectID;
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             int testId = rs.getInt("testID");
             String name = rs.getString("testName");
             int subjectID = rs.getInt("subjectID");
@@ -34,5 +36,14 @@ public class TestDAO {
         rs.close();
         conn.close();
         return ls;
+    }
+
+    public void delete(int id) throws Exception {
+        String query = "delete from Question where testid = " + id + " delete from Test where testid = " + id;
+        Connection conn = new DBContext().getConnection();
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.execute();
+        ps.close();
+        conn.close();
     }
 }

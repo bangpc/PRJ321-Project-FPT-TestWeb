@@ -13,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -33,12 +35,34 @@ public class SubjectController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            //int subjectID = Integer.valueOf(request.getParameter("id"));
-            int subjectID = 1;
+            int subjectID = Integer.valueOf(request.getParameter("id"));
             TestDAO dao = new TestDAO();
             request.setAttribute("testList", dao.listTestBySubject(subjectID));
-            RequestDispatcher rd = request.getRequestDispatcher("subject.jsp");
-            rd.forward(request, response);
+
+            HttpSession session = request.getSession(true);
+            User u = (User) session.getAttribute("login");
+            if (u == null) {
+                RequestDispatcher rd = request.getRequestDispatcher("subject.jsp");
+                rd.forward(request, response);
+            } else {
+                if (u.getUserType() == 1) {
+                    if (request.getParameter("action") != null) {
+                        if (request.getParameter("action").equals("delete")) {
+                            int testID = Integer.valueOf(request.getParameter("testID"));
+                            dao.delete(testID);
+                            response.sendRedirect("/FPT_Test/SubjectController?id=" + subjectID);
+                        } else if (request.getParameter("action").equals("add")) {
+
+                        }
+                    } else {
+                        RequestDispatcher rd = request.getRequestDispatcher("admin/subject.jsp");
+                        rd.forward(request, response);
+                    }
+                } else {
+                    RequestDispatcher rd = request.getRequestDispatcher("subject.jsp");
+                    rd.forward(request, response);
+                }
+            }
         } catch (Exception e) {
             response.getWriter().print(e);
         }

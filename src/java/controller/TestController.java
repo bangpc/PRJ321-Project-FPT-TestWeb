@@ -6,6 +6,7 @@
 package controller;
 
 import dao.QuestionDAO;
+import dao.TestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -33,11 +34,19 @@ public class TestController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            int testID = Integer.valueOf(request.getParameter("id"));
-            QuestionDAO dao = new QuestionDAO();
-            request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
-            RequestDispatcher rd = request.getRequestDispatcher("user/test.jsp");
-            rd.forward(request, response);
+            if (request.getParameter("action") == null) {
+                int testID = Integer.valueOf(request.getParameter("id"));
+                QuestionDAO dao = new QuestionDAO();
+                request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
+                RequestDispatcher rd = request.getRequestDispatcher("user/test.jsp");
+                rd.forward(request, response);
+            } else if (request.getParameter("action").equals("edit")) {
+                int testID = Integer.valueOf(request.getParameter("testID"));
+                QuestionDAO dao = new QuestionDAO();
+                request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
+                RequestDispatcher rd = request.getRequestDispatcher("admin/test.jsp");
+                rd.forward(request, response);
+            }
         } catch (Exception e) {
         }
     }
