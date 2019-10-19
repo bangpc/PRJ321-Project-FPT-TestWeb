@@ -15,11 +15,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.User;
 
 /**
  *
- * @author BangPC
+ * @author dell
  */
 public class RegisterController extends HttpServlet {
 
@@ -36,31 +37,38 @@ public class RegisterController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            if (request.getParameter("register") != null) {
-                UserDAO ud = new UserDAO();
-                boolean isValidUser = false;
-                String userName = request.getParameter("userName");
-                String password = request.getParameter("password");
-                String email = request.getParameter("email");
-                List<User> l = new ArrayList<>();
-                l = ud.listUser();
-                for (User u : l) {
-                    if (userName.equalsIgnoreCase(u.getUsername()) && password.equals(u.getPassword())) {
-                        isValidUser = true;
-                        break;
-                    }
+            UserDAO dao = new UserDAO();
+            boolean isExistUser = false;
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String email = request.getParameter("email");
+            List<User> l = new ArrayList<>();
+            l = dao.listUser();
+            String errorType = "";
+            for (User u : l) {
+                if (username.equalsIgnoreCase(u.getUsername())) {
+                    isExistUser = true;
+                    errorType = "Username already exist";
+                    break;
                 }
-                if (isValidUser) {
-                    request.setAttribute("errorRegister", "Username already exist");
-                    RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
-                    rd.forward(request, response);
-                } else if(!isValidUser){
-                    request.setAttribute("userRegister", request.getParameter(userName));
-                    RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                    rd.forward(request, response);
+                if (email.equalsIgnoreCase(u.getEmail())) {
+                    isExistUser = true;
+                    errorType = "Email already exist";
+                    break;
                 }
             }
-           
+            if (isExistUser) {
+                request.setAttribute("errorRegister", errorType);
+                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                rd.forward(request, response);
+            } else {
+                dao.insert(username, password, email);
+                User acc = dao.select(username);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("login", acc);
+                session.setMaxInactiveInterval(30 * 60);
+                response.sendRedirect("home");
+            }
         } catch (Exception e) {
             response.getWriter().print(e);
         }

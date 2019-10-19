@@ -15,11 +15,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.User;
 
 /**
  *
- * @author BangPC
+ * @author dell
  */
 public class LoginController extends HttpServlet {
 
@@ -36,25 +37,30 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            boolean isValidUser = false;
-            String userName = request.getParameter("userName");
+            String username = request.getParameter("username");
             String password = request.getParameter("password");
-            UserDAO ud = new UserDAO();
+            UserDAO dao = new UserDAO();
             List<User> l = new ArrayList<>();
-            l=ud.listUser();
-            for(User u :l){
-                if(u.getUsername().equalsIgnoreCase(userName) && u.getPassword().equals(password)){
-                    isValidUser =true;
+            l = dao.listUser();
+
+            boolean isValidUser = false;
+            User acc = new User();
+            for (User u : l) {
+                if (u.getUsername().equalsIgnoreCase(username) && u.getPassword().equals(password)) {
+                    isValidUser = true;
+                    acc = u;
                     break;
                 }
             }
-            if(isValidUser){
-                request.setAttribute("test", userName);
-                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-                rd.forward(request, response);
-            }else{
+
+            if (isValidUser) {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("login", acc);
+                session.setMaxInactiveInterval(30 * 60);
+                response.sendRedirect("home");
+            } else {
                 request.setAttribute("error", "Invalid username or password");
-                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                 rd.forward(request, response);
             }
         } catch (Exception e) {

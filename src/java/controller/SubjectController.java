@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author BangPC
+ * @author dell
  */
-public class SubjectToTestController extends HttpServlet {
+public class SubjectController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +33,13 @@ public class SubjectToTestController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            int subjectID = Integer.valueOf(request.getParameter("subjectID"));
-            TestDAO td = new TestDAO();
-            request.setAttribute("testList", td.listTestBySubject(subjectID));
-            RequestDispatcher rd = request.getRequestDispatcher("test.jsp");
+            //int subjectID = Integer.valueOf(request.getParameter("id"));
+            int subjectID = 1;
+            TestDAO dao = new TestDAO();
+            request.setAttribute("testList", dao.listTestBySubject(subjectID));
+            RequestDispatcher rd = request.getRequestDispatcher("subject.jsp");
             rd.forward(request, response);
-        }catch(Exception e){
+        } catch (Exception e) {
             response.getWriter().print(e);
         }
     }

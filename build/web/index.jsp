@@ -1,11 +1,11 @@
 <%-- 
     Document   : index
-    Created on : Oct 18, 2019, 1:13:51 PM
+    Created on : Oct 19, 2019, 10:35:07 AM
     Author     : dell
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,18 +13,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="home">
-        <a href="#">Login</a> 
-        <a href="#">Register</a>
-        <a href="#">Response</a>
-        <a href="https://daihoc.fpt.edu.vn/">FPT Home Page</a><p>
+        <p>   
+            <a href="login.jsp">Login</a>
+            <a href="register.jsp">Register</a>
+            <a href="response.jsp">Response</a>
+        </p>
+        <form action="SearchController">
+            <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
+        </form>
         <table>
-            <tr ><input type="text" name="SearchSubject"/>&nbsp;<button>Search</button></tr><tr></tr>
             <c:forEach var="x" items="${listSubject}">
-            <td><a href="SubjectToTest?subjectID=${x.getSubjectID()}">${x.getSubjectName()}</a></td>
+                <td>
+                    <a href="SubjectController?id=${x.getSubjectID()}">${x.getSubjectName()}</a>
+                </td>
             </c:forEach>
         </table>
-        </form>
-        <h1>${tester}</h1>
     </body>
 </html>

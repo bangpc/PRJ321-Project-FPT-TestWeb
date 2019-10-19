@@ -18,12 +18,13 @@ import model.Test;
  * @author dell
  */
 public class QuestionDAO {
-    public List<Question> listQuestionByTest(int TestID) throws Exception{
+
+    public List<Question> listQuestionByTest(int TestID) throws Exception {
         List<Question> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql="select * from Question where testID="+TestID;
+        String sql = "select * from Question where testID=" + TestID;
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             int questionId = rs.getInt("questionID");
             int testID = rs.getInt("testID");
             String questionContent = rs.getString("questionContent");
@@ -38,5 +39,4 @@ public class QuestionDAO {
         conn.close();
         return ls;
     }
-            
 }

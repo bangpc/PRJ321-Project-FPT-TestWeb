@@ -13,9 +13,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p>   
-            <a href="login.jsp">Login</a>
-            <a href="register.jsp">Register</a>
+        <p>
+            <c:if test="${not empty sessionScope.login}">
+                Welcome ${sessionScope.login.username}
+                <a href="/FPT_TestWeb/LogoutController">Sign out</a> 
+            </c:if>
+            <c:if test="${empty sessionScope.login}">    
+                <a href="login.jsp">Login</a>
+                <a href="register.jsp">Register</a>
+            </c:if> 
             <a href="response.jsp">Response</a>
         </p>
         <form action="SearchController">

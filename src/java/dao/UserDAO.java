@@ -19,35 +19,53 @@ import model.User;
  * @author dell
  */
 public class UserDAO {
-    public List<User> listUser() throws Exception{
+
+    public List<User> listUser() throws Exception {
         List<User> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql="select * from [User]";
+        String sql = "select * from [User]";
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             int userID = rs.getInt("userID");
-            String userName = rs.getString("username");
+            String username = rs.getString("username");
             String password = rs.getString("password");
             String email = rs.getString("email");
             int userType = rs.getInt("userType");
-            ls.add(new User(userID, userName, password, email, userType));
+            ls.add(new User(userID, username, password, email, userType));
         }
         rs.close();
         conn.close();
         return ls;
     }
-    
-    public void insert(String userName,String password, String email) throws Exception{
-        String sql="insert into User values(?, ?, ?, ?)";
+
+    public User select(String name) throws Exception {
+        Connection conn = new DBContext().getConnection();
+        String sql = "select * from [User] where username = '" + name + "'";
+        ResultSet rs = conn.prepareStatement(sql).executeQuery();
+        User u = new User();
+        while (rs.next()) {
+            int userID = rs.getInt("userID");
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            String email = rs.getString("email");
+            int userType = rs.getInt("userType");
+            u = new User(userID, username, password, email, userType);
+        }
+        rs.close();
+        conn.close();
+        return u;
+    }
+
+    public void insert(String userName, String password, String email) throws Exception {
+        String sql = "INSERT [User] ([username], [password], [email], [userType]) VALUES (?, ?, ?, ?)";
         Connection con = new DBContext().getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, userName);
-        ps.setString(2,password);
+        ps.setString(2, password);
         ps.setString(3, email);
         ps.setInt(4, 2);
         ps.executeUpdate();
         ps.close();
         con.close();
-        
     }
 }

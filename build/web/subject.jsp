@@ -1,11 +1,11 @@
 <%-- 
-    Document   : Test
-    Created on : Oct 18, 2019, 8:33:39 PM
-    Author     : BangPC
+    Document   : subject
+    Created on : Oct 19, 2019, 1:22:53 PM
+    Author     : dell
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +18,7 @@
                 <th>Test Name</th>
             </tr>
             <c:forEach var="x" items="${testList}">
-                <td><a href="Question?testID=${x.testID}">${x.testName}</td>
+                <td><a href="TestController?id=${x.testID}">${x.testName}</td>
             </c:forEach>
         </table>
     </body>

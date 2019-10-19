@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.SubjectDAO;
+import dao.QuestionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,14 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
  * @author dell
  */
-public class IndexController extends HttpServlet {
+public class TestController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,25 +33,12 @@ public class IndexController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession(true);
-            SubjectDAO dao = new SubjectDAO();
-            request.setAttribute("listSubject", dao.listSubject());
-
-            User u = (User) session.getAttribute("login");
-            if (u == null) {
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
-            } else {
-                if (u.getUserType() == 1) {
-                    RequestDispatcher rd = request.getRequestDispatcher("admin/index.jsp");
-                    rd.forward(request, response);
-                } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("user/index.jsp");
-                    rd.forward(request, response);
-                }
-            }
+            int testID = Integer.valueOf(request.getParameter("id"));
+            QuestionDAO dao = new QuestionDAO();
+            request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
+            RequestDispatcher rd = request.getRequestDispatcher("user/test.jsp");
+            rd.forward(request, response);
         } catch (Exception e) {
-            response.getWriter().print(e);
         }
     }
 

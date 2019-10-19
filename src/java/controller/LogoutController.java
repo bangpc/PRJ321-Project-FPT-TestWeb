@@ -5,20 +5,19 @@
  */
 package controller;
 
-import dao.QuestionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author BangPC
+ * @author dell
  */
-public class QuestionController extends HttpServlet {
+public class LogoutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,11 +32,9 @@ public class QuestionController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            int testID = Integer.valueOf(request.getParameter("testID"));
-            QuestionDAO qd = new QuestionDAO();
-            request.setAttribute("listQuestion", qd.listQuestionByTest(testID));
-            RequestDispatcher rd = request.getRequestDispatcher("question.jsp");
-            rd.forward(request, response);
+            HttpSession session = request.getSession(true);
+            session.removeAttribute("login");
+            response.sendRedirect("home");
         } catch (Exception e) {
         }
     }

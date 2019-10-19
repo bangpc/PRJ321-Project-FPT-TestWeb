@@ -1,32 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <filter>
-        <filter-name>AuthenFilter</filter-name>
-        <filter-class>filter.AuthenFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>AuthorFilter</filter-name>
-        <filter-class>filter.AuthorFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthenFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>AuthorFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
     <servlet>
         <servlet-name>IndexController</servlet-name>
         <servlet-class>controller.IndexController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SubjectToTestController</servlet-name>
-        <servlet-class>controller.SubjectToTestController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>QuestionController</servlet-name>
-        <servlet-class>controller.QuestionController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
@@ -36,25 +12,41 @@
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>controller.RegisterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubjectController</servlet-name>
+        <servlet-class>controller.SubjectController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestController</servlet-name>
+        <servlet-class>controller.TestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SubjectToTestController</servlet-name>
-        <url-pattern>/SubjectToTest</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>QuestionController</servlet-name>
-        <url-pattern>/Question</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
-        <url-pattern>/LoginFPT</url-pattern>
+        <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
-        <url-pattern>/RegisterFPT</url-pattern>
+        <url-pattern>/RegisterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubjectController</servlet-name>
+        <url-pattern>/SubjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestController</servlet-name>
+        <url-pattern>/TestController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
