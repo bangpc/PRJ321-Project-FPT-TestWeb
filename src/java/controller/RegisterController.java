@@ -36,29 +36,33 @@ public class RegisterController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            UserDAO ud = new UserDAO();
-            boolean isValidUser = false;
-            String userName = request.getParameter("userName");
-            String password = request.getParameter("password");
-            String email = request.getParameter("email");
-            List<User> l = new ArrayList<>();
-            l=ud.listUser();
-            for(User u :l){
-                if(u.getUsername().equalsIgnoreCase(userName) && u.getPassword().equals(password)){
-                    isValidUser =true;
-                    break;
+            if (request.getParameter("register") != null) {
+                UserDAO ud = new UserDAO();
+                boolean isValidUser = false;
+                String userName = request.getParameter("userName");
+                String password = request.getParameter("password");
+                String email = request.getParameter("email");
+                List<User> l = new ArrayList<>();
+                l = ud.listUser();
+                for (User u : l) {
+                    if (userName.equalsIgnoreCase(u.getUsername()) && password.equals(u.getPassword())) {
+                        isValidUser = true;
+                        break;
+                    }
+                }
+                if (isValidUser) {
+                    request.setAttribute("errorRegister", "Username already exist");
+                    RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                    rd.forward(request, response);
+                } else if(!isValidUser){
+                    request.setAttribute("userRegister", request.getParameter(userName));
+                    RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+                    rd.forward(request, response);
                 }
             }
-            if(isValidUser){
-                request.setAttribute("error", "Username already exist");
-                RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
-                rd.forward(request, response);
-            }else{
-                request.setAttribute("userRegister", request.getParameter(userName));
-                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-                rd.forward(request, response);
-            }
+           
         } catch (Exception e) {
+            response.getWriter().print(e);
         }
     }
 

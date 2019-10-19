@@ -36,7 +36,7 @@ public class QuestionController extends HttpServlet {
             int testID = Integer.valueOf(request.getParameter("testID"));
             QuestionDAO qd = new QuestionDAO();
             request.setAttribute("listQuestion", qd.listQuestionByTest(testID));
-            RequestDispatcher rd = request.getRequestDispatcher("Question.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("question.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
         }

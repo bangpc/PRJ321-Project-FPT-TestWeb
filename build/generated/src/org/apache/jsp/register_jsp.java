@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -62,24 +62,23 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>Test FPT Website</h1>\n");
-      out.write("        ");
+      out.write("        <form action=\"RegisterFPT\">\n");
+      out.write("            ");
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
       out.write("\n");
-      out.write("        <form action=\"Login\">\n");
-      out.write("        <table>\n");
+      out.write("        <table >\n");
       out.write("            <tr>\n");
       out.write("                <th></th><th></th>\n");
       out.write("            </tr>\n");
-      out.write("            <tr><td>User Name</td> <td><input type=\"text\" name=\"userName\" value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${userRegister}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/></td></tr>\n");
-      out.write("            <tr><td>Password</td>  <td><input type=\"password\" name=\"password\" /></td></tr>        \n");
+      out.write("            \n");
+      out.write("            <tr><td>User Name</td><td><input type=\"text\" name=\"username\"/></td></tr>\n");
+      out.write("            <tr><td>Password</td><td><input type=\"password\" name=\"password\"/></td></tr>\n");
+      out.write("                \n");
       out.write("        </table>\n");
-      out.write("        <p><input type=\"submit\" value=\"Login\" name=\"Login\" /></p>\n");
+      out.write("            <p><input type=\"submit\" name=\"register\">\n");
+      out.write("            <p>If you have an account click <a href=\"#\">here</a> to login\n");
       out.write("        </form>\n");
-      out.write("        If you do not have an account click <a href=\"#\">here</a> to register\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
@@ -103,15 +102,15 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.IfTag _jspx_th_c_if_0 = (org.apache.taglibs.standard.tag.rt.core.IfTag) _jspx_tagPool_c_if_test.get(org.apache.taglibs.standard.tag.rt.core.IfTag.class);
     _jspx_th_c_if_0.setPageContext(_jspx_page_context);
     _jspx_th_c_if_0.setParent(null);
-    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty error}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
+    _jspx_th_c_if_0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${not empty errorRegister}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null)).booleanValue());
     int _jspx_eval_c_if_0 = _jspx_th_c_if_0.doStartTag();
     if (_jspx_eval_c_if_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\n");
-        out.write("            <p style=\"color: red\">");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${error}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("                <p style=\"color: red\">");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${errorRegister}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("</p>\n");
-        out.write("        ");
+        out.write("            ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;

@@ -36,7 +36,7 @@ public class SubjectToTestController extends HttpServlet {
             int subjectID = Integer.valueOf(request.getParameter("subjectID"));
             TestDAO td = new TestDAO();
             request.setAttribute("testList", td.listTestBySubject(subjectID));
-            RequestDispatcher rd = request.getRequestDispatcher("Test.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("test.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             response.getWriter().print(e);
