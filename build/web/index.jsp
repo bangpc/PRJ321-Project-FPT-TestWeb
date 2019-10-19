@@ -13,11 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p>   
-            <a href="login.jsp">Login</a>
-            <a href="register.jsp">Register</a>
-            <a href="response.jsp">Response</a>
-        </p>
+        <jsp:include page="navigationBar.jsp"></jsp:include>
         <form action="SearchController">
             <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
         </form>

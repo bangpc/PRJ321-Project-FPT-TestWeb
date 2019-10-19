@@ -13,17 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p>
-            <c:if test="${not empty sessionScope.login}">
-                Welcome ${sessionScope.login.username}
-                <a href="/FPT_TestWeb/LogoutController">Sign out</a> 
-            </c:if>
-            <c:if test="${empty sessionScope.login}">    
-                <a href="login.jsp">Login</a>
-                <a href="register.jsp">Register</a>
-            </c:if> 
-            <a href="response.jsp">Response</a>
-        </p>
+        <jsp:include page="navigationBar.jsp"></jsp:include>
         <form action="SearchController">
             <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
         </form>

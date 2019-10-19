@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="navigationBar.jsp"></jsp:include>
         <form action="RegisterController">
             <c:if test="${not empty errorRegister}">
                 <p style="color: red">${errorRegister}</p>
