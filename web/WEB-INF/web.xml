@@ -24,6 +24,10 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClassController</servlet-name>
+        <servlet-class>controller.ClassController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClassController</servlet-name>
+        <url-pattern>/ClassController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

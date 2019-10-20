@@ -15,10 +15,12 @@
     <body>
         <table>
             <tr>
-                <th>Test Name</th>
+                <th>Class Name</th>
             </tr>
-            <c:forEach var="x" items="${testList}">
-                <td><a href="TestController?id=${x.testID}">${x.testName}</td>
+            <c:forEach var="x" items="${classList}">
+                <tr>
+                    <td><a href="ClassController?classID=${x.classID}">${x.className}</a></td>
+                </tr>
             </c:forEach>
         </table>
     </body>

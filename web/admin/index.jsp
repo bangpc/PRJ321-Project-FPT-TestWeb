@@ -19,9 +19,11 @@
         </form>
         <table>
             <c:forEach var="x" items="${listSubject}">
-                <td>
-                    <a href="SubjectController?id=${x.getSubjectID()}">${x.getSubjectName()}</a>
-                </td>
+                <tr>
+                    <td>
+                        <a href="SubjectController?subjectID=${x.getSubjectID()}">${x.getSubjectName()}</a>
+                    </td>
+                </tr>
             </c:forEach>
         </table>
     </body>

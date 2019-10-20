@@ -13,14 +13,14 @@ public class Test {
 
     private int testID;
     private String testName;
-    private int subjectID;
+    private int classID;
     private String testContent;
     private int difficulty;
 
-    public Test(int testID, String testName, int subjectID, String testContent, int difficulty) {
+    public Test(int testID, String testName, int classID, String testContent, int difficulty) {
         this.testID = testID;
         this.testName = testName;
-        this.subjectID = subjectID;
+        this.classID = classID;
         this.testContent = testContent;
         this.difficulty = difficulty;
     }
@@ -41,12 +41,12 @@ public class Test {
         this.testName = testName;
     }
 
-    public int getSubjectID() {
-        return subjectID;
+    public int getClassID() {
+        return classID;
     }
 
-    public void setSubjectID(int subjectID) {
-        this.subjectID = subjectID;
+    public void setClassID(int classID) {
+        this.classID = classID;
     }
 
     public String getTestContent() {

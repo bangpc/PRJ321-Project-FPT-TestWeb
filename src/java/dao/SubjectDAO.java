@@ -17,12 +17,13 @@ import model.Subject;
  * @author BangPC
  */
 public class SubjectDAO {
-    public List<Subject> listSubject() throws Exception{
+
+    public List<Subject> listSubject() throws Exception {
         List<Subject> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql="select * from Subject";
+        String sql = "select * from Subject";
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
-        while(rs.next()){
+        while (rs.next()) {
             int id = rs.getInt("subjectID");
             String name = rs.getString("subjectName");
             ls.add(new Subject(id, name));

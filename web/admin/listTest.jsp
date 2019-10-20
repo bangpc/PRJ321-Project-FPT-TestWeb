@@ -1,6 +1,6 @@
 <%-- 
-    Document   : subject
-    Created on : Oct 19, 2019, 1:22:53 PM
+    Document   : listTest
+    Created on : Oct 20, 2019, 4:12:32 PM
     Author     : dell
 --%>
 
@@ -17,14 +17,13 @@
             <tr>
                 <th>Test Name</th>
                 <th></th>
-                <th></th>
             </tr>
             <c:forEach var="x" items="${testList}">
                 <tr>
-                    <td>${x.testName}</td>
+                    <td><a href="TestController?testID=${x.testID}">${x.testName}</a></td>
                     <td align="center">
-                        <c:url var="delete" value="SubjectController">
-                            <c:param name="id" value="${param.id}"/>
+                        <c:url var="delete" value="ClassController">
+                            <c:param name="classID" value="${param.classID}"/>
                             <c:param name="testID" value="${x.testID}"/>
                             <c:param name="action" value="delete"/>
                         </c:url>
@@ -33,8 +32,7 @@
                         </a>
                     </td>
                     <td align="center">
-                        <c:url var="edit" value="TestController">
-                            <c:param name="subjectID" value="${param.id}"/>
+                        <c:url var="edit" value="QuestionController">
                             <c:param name="testID" value="${x.testID}"/>
                             <c:param name="action" value="edit"/>
                         </c:url>

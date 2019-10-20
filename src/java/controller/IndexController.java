@@ -8,6 +8,7 @@ package controller;
 import dao.SubjectDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,25 +36,38 @@ public class IndexController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession(true);
-            SubjectDAO dao = new SubjectDAO();
-            request.setAttribute("listSubject", dao.listSubject());
+            String action = request.getParameter("action");
+            if (action == null) {
+                action = "list";
+            }
 
-            User u = (User) session.getAttribute("login");
-            if (u == null) {
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
-            } else {
-                if (u.getUserType() == 1) {
-                    RequestDispatcher rd = request.getRequestDispatcher("admin/index.jsp");
-                    rd.forward(request, response);
-                } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("user/index.jsp");
-                    rd.forward(request, response);
-                }
+            switch (action) {
+                case "list":
+                    listSubject(request, response);
+                    break;
             }
         } catch (Exception e) {
             response.getWriter().print(e);
+        }
+    }
+
+    public void listSubject(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession(true);
+        User u = (User) session.getAttribute("login");
+        SubjectDAO dao = new SubjectDAO();
+        request.setAttribute("listSubject", dao.listSubject());
+
+        if (u == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
+        } else {
+            if (u.getUserType() == 1) {
+                RequestDispatcher rd = request.getRequestDispatcher("admin/index.jsp");
+                rd.forward(request, response);
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("user/index.jsp");
+                rd.forward(request, response);
+            }
         }
     }
 

@@ -11,27 +11,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import model.Subject;
-import model.Test;
+import model.Classes;
 
 /**
  *
  * @author dell
  */
-public class TestDAO {
+public class ClassDAO {
 
-    public List<Test> listTestByClass(int ClassID) throws Exception {
-        List<Test> ls = new ArrayList<>();
+    public List<Classes> listClassBySubject(int SubjectID) throws Exception {
+        List<Classes> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql = "select * from Test where ClassID=" + ClassID;
+        String sql = "select * from [class] where subjectID=" + SubjectID;
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
         while (rs.next()) {
-            int testId = rs.getInt("testID");
-            String name = rs.getString("testName");
-            int classID = rs.getInt("classID");
-            String subjectContent = rs.getString("testContent");
-            int difficulty = rs.getInt("difficulty");
-            ls.add(new Test(testId, name, classID, subjectContent, difficulty));
+            int testId = rs.getInt("classID");
+            String name = rs.getString("className");
+            int subjectID = rs.getInt("subjectID");
+            String classContent = rs.getString("classContent");
+            ls.add(new Classes(testId, subjectID, name, classContent));
         }
         rs.close();
         conn.close();
@@ -39,7 +37,7 @@ public class TestDAO {
     }
 
     public void delete(int id) throws Exception {
-        String query = "delete from Test where testid = " + id;
+        String query = "delete from [class] where classid = " + id;
         Connection conn = new DBContext().getConnection();
         PreparedStatement ps = conn.prepareStatement(query);
         ps.execute();

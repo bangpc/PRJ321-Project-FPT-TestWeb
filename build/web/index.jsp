@@ -14,14 +14,16 @@
     </head>
     <body>
         <jsp:include page="navigationBar.jsp"></jsp:include>
-        <form action="SearchController">
-            <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
-        </form>
-        <table>
+            <form action="SearchController">
+                <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
+            </form>
+            <table>
             <c:forEach var="x" items="${listSubject}">
-                <td>
-                    <a href="SubjectController?id=${x.getSubjectID()}">${x.getSubjectName()}</a>
-                </td>
+                <tr>
+                    <td>
+                        <a href="SubjectController?subjectID=${x.getSubjectID()}">${x.getSubjectName()}</a>
+                    </td>
+                </tr>
             </c:forEach>
         </table>
     </body>
