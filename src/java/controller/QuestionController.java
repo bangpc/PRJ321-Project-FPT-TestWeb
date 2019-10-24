@@ -5,8 +5,7 @@
  */
 package controller;
 
-import dao.ClassDAO;
-import dao.SubjectDAO;
+import dao.QuestionDAO;
 import dao.TestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +21,7 @@ import model.User;
  *
  * @author dell
  */
-public class SubjectController extends HttpServlet {
+public class QuestionController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,13 +43,13 @@ public class SubjectController extends HttpServlet {
 
             switch (action) {
                 case "list":
-                    listClass(request, response);
+                    listQuestion(request, response);
                     break;
                 case "delete":
-                    deleteClass(request, response);
+                    deleteQuestion(request, response);
                     break;
                 case "add":
-                    addClass(request, response);
+                    addQuestion(request, response);
                     break;
             }
         } catch (Exception e) {
@@ -58,47 +57,46 @@ public class SubjectController extends HttpServlet {
         }
     }
 
-    public void listClass(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void listQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession(true);
-        int subjectID = 1;
+        int testID = 1;
         try {
-            subjectID = Integer.valueOf(request.getParameter("subjectID"));
+            testID = Integer.valueOf(request.getParameter("testID"));
         } catch (Exception e) {
-            subjectID = (int) session.getAttribute("subjectID");
+            testID = (int) session.getAttribute("testID");
         }
-        session.setAttribute("subjectID", subjectID);
+        session.setAttribute("testID", testID);
 
-        ClassDAO dao = new ClassDAO();
-        request.setAttribute("classList", dao.listClassBySubject(subjectID));
+        QuestionDAO dao = new QuestionDAO();
+        request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
         User u = (User) session.getAttribute("login");
         if (u == null) {
-            RequestDispatcher rd = request.getRequestDispatcher("listClass.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
         } else {
             if (u.getUserType() == 1) {
-                RequestDispatcher rd = request.getRequestDispatcher("admin/listClass.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("admin/test.jsp");
                 rd.forward(request, response);
-
             } else {
-                RequestDispatcher rd = request.getRequestDispatcher("listClass.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("user/test.jsp");
                 rd.forward(request, response);
             }
         }
     }
 
-    public void deleteClass(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void deleteQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession(true);
-        int subjectID = Integer.valueOf(request.getParameter("subjectID"));
-        session.setAttribute("subjectID", subjectID);
+        int testID = Integer.valueOf(request.getParameter("testID"));
+        session.setAttribute("testID", testID);
 
-        ClassDAO dao = new ClassDAO();
-        int classID = Integer.valueOf(request.getParameter("classID"));
-        dao.delete(classID);
-        response.sendRedirect("/FPT_Test/SubjectController");
+        QuestionDAO dao = new QuestionDAO();
+        int questionID = Integer.valueOf(request.getParameter("questionID"));
+        dao.delete(questionID);
+        response.sendRedirect("/FPT_Test/QuestionController");
     }
 
-    public void addClass(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        
+    public void addQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

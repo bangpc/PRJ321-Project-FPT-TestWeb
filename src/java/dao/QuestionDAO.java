@@ -7,6 +7,7 @@ package dao;
 
 import context.DBContext;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +39,14 @@ public class QuestionDAO {
         rs.close();
         conn.close();
         return ls;
+    }
+
+    public void delete(int id) throws Exception {
+        String query = "delete from Question where questionid = " + id;
+        Connection conn = new DBContext().getConnection();
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.execute();
+        ps.close();
+        conn.close();
     }
 }

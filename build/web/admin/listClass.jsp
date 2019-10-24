@@ -20,9 +20,9 @@
             </tr>
             <c:forEach var="x" items="${classList}">
                 <tr>
-                    <td><a href="ClassController?classID=${x.classID}">${x.className}</a></td>
+                    <td><a href="TestController?classID=${x.classID}">${x.className}</a></td>
                     <td align="center">
-                        <c:url var="delete" value="SubjectController">
+                        <c:url var="delete" value="ClassController">
                             <c:param name="subjectID" value="${param.subjectID}"/>
                             <c:param name="classID" value="${x.classID}"/>
                             <c:param name="action" value="delete"/>

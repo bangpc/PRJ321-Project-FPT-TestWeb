@@ -43,13 +43,13 @@ public class ClassController extends HttpServlet {
 
             switch (action) {
                 case "list":
-                    listTest(request, response);
+                    listClass(request, response);
                     break;
                 case "delete":
-                    deleteTest(request, response);
+                    deleteClass(request, response);
                     break;
                 case "add":
-                    addTest(request, response);
+                    addClass(request, response);
                     break;
             }
         } catch (Exception e) {
@@ -57,46 +57,46 @@ public class ClassController extends HttpServlet {
         }
     }
 
-    public void listTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void listClass(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession(true);
-        int classID = 1;
+        int subjectID = 1;
         try {
-            classID = Integer.valueOf(request.getParameter("classID"));
+            subjectID = Integer.valueOf(request.getParameter("subjectID"));
         } catch (Exception e) {
-            classID = (int) session.getAttribute("classID");
+            subjectID = (int) session.getAttribute("subjectID");
         }
-        session.setAttribute("classID", classID);
+        session.setAttribute("subjectID", subjectID);
 
-        TestDAO dao = new TestDAO();
-        request.setAttribute("testList", dao.listTestByClass(classID));
+        ClassDAO dao = new ClassDAO();
+        request.setAttribute("classList", dao.listClassBySubject(subjectID));
         User u = (User) session.getAttribute("login");
         if (u == null) {
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("listClass.jsp");
             rd.forward(request, response);
         } else {
             if (u.getUserType() == 1) {
-                RequestDispatcher rd = request.getRequestDispatcher("admin/listTest.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("admin/listClass.jsp");
                 rd.forward(request, response);
 
             } else {
-                RequestDispatcher rd = request.getRequestDispatcher("user/listTest.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("listClass.jsp");
                 rd.forward(request, response);
             }
         }
     }
 
-    public void deleteTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void deleteClass(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession(true);
-        int classID = Integer.valueOf(request.getParameter("classID"));
-        session.setAttribute("classID", classID);
+        int subjectID = Integer.valueOf(request.getParameter("subjectID"));
+        session.setAttribute("subjectID", subjectID);
 
-        TestDAO dao = new TestDAO();
-        int testID = Integer.valueOf(request.getParameter("testID"));
-        dao.delete(testID);
+        ClassDAO dao = new ClassDAO();
+        int classID = Integer.valueOf(request.getParameter("classID"));
+        dao.delete(classID);
         response.sendRedirect("/FPT_Test/ClassController");
     }
 
-    public void addTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void addClass(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     }
 

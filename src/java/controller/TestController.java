@@ -14,6 +14,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -34,21 +36,67 @@ public class TestController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            if (request.getParameter("action") == null) {
-                int testID = Integer.valueOf(request.getParameter("id"));
-                QuestionDAO dao = new QuestionDAO();
-                request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
-                RequestDispatcher rd = request.getRequestDispatcher("user/test.jsp");
-                rd.forward(request, response);
-            } else if (request.getParameter("action").equals("edit")) {
-                int testID = Integer.valueOf(request.getParameter("testID"));
-                QuestionDAO dao = new QuestionDAO();
-                request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
-                RequestDispatcher rd = request.getRequestDispatcher("admin/test.jsp");
-                rd.forward(request, response);
+            String action = request.getParameter("action");
+            if (action == null) {
+                action = "list";
+            }
+
+            switch (action) {
+                case "list":
+                    listTest(request, response);
+                    break;
+                case "delete":
+                    deleteTest(request, response);
+                    break;
+                case "add":
+                    addTest(request, response);
+                    break;
             }
         } catch (Exception e) {
         }
+    }
+
+    public void listTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession(true);
+        int classID = 1;
+        try {
+            classID = Integer.valueOf(request.getParameter("classID"));
+        } catch (Exception e) {
+            classID = (int) session.getAttribute("classID");
+        }
+        session.setAttribute("classID", classID);
+
+        TestDAO dao = new TestDAO();
+        request.setAttribute("testList", dao.listTestByClass(classID));
+        User u = (User) session.getAttribute("login");
+        if (u == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+        } else {
+            if (u.getUserType() == 1) {
+                RequestDispatcher rd = request.getRequestDispatcher("admin/listTest.jsp");
+                rd.forward(request, response);
+
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("user/listTest.jsp");
+                rd.forward(request, response);
+            }
+        }
+    }
+
+    public void deleteTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession(true);
+        int classID = Integer.valueOf(request.getParameter("classID"));
+        session.setAttribute("classID", classID);
+
+        TestDAO dao = new TestDAO();
+        int testID = Integer.valueOf(request.getParameter("testID"));
+        dao.delete(testID);
+        response.sendRedirect("/FPT_Test/TestController");
+    }
+
+    public void addTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

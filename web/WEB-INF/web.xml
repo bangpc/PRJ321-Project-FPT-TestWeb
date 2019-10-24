@@ -13,10 +13,6 @@
         <servlet-class>controller.RegisterController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SubjectController</servlet-name>
-        <servlet-class>controller.SubjectController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>TestController</servlet-name>
         <servlet-class>controller.TestController</servlet-class>
     </servlet>
@@ -27,6 +23,10 @@
     <servlet>
         <servlet-name>ClassController</servlet-name>
         <servlet-class>controller.ClassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionController</servlet-name>
+        <servlet-class>controller.QuestionController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
@@ -41,10 +41,6 @@
         <url-pattern>/RegisterController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SubjectController</servlet-name>
-        <url-pattern>/SubjectController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>TestController</servlet-name>
         <url-pattern>/TestController</url-pattern>
     </servlet-mapping>
@@ -55,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ClassController</servlet-name>
         <url-pattern>/ClassController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionController</servlet-name>
+        <url-pattern>/QuestionController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -21,7 +21,7 @@
             <c:forEach var="x" items="${listSubject}">
                 <tr>
                     <td>
-                        <a href="SubjectController?subjectID=${x.getSubjectID()}">${x.getSubjectName()}</a>
+                        <a href="ClassController?subjectID=${x.getSubjectID()}">${x.getSubjectName()}</a>
                     </td>
                 </tr>
             </c:forEach>

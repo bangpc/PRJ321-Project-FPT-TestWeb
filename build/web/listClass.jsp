@@ -19,7 +19,7 @@
             </tr>
             <c:forEach var="x" items="${classList}">
                 <tr>
-                    <td><a href="ClassController?classID=${x.classID}">${x.className}</a></td>
+                    <td><a href="TestController?classID=${x.classID}">${x.className}</a></td>
                 </tr>
             </c:forEach>
         </table>
