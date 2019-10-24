@@ -23,7 +23,7 @@ public class TestDAO {
     public List<Test> listTestByClass(int ClassID) throws Exception {
         List<Test> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql = "select * from Test where ClassID=" + ClassID;
+        String sql = "select * from Test where ClassID = " + ClassID;
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
         while (rs.next()) {
             int testId = rs.getInt("testID");

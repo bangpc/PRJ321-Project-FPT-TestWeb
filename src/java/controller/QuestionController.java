@@ -86,7 +86,12 @@ public class QuestionController extends HttpServlet {
 
     public void deleteQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession(true);
-        int testID = Integer.valueOf(request.getParameter("testID"));
+        int testID = 1;
+        try {
+            testID = Integer.valueOf(request.getParameter("testID"));
+        } catch (Exception e) {
+            testID = (int) session.getAttribute("testID");
+        }
         session.setAttribute("testID", testID);
 
         QuestionDAO dao = new QuestionDAO();
@@ -96,7 +101,17 @@ public class QuestionController extends HttpServlet {
     }
 
     public void addQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession(true);
+        int testID = 1;
+        try {
+            testID = Integer.valueOf(request.getParameter("testID"));
+        } catch (Exception e) {
+            testID = (int) session.getAttribute("testID");
+        }
+        session.setAttribute("testID", testID);
 
+        RequestDispatcher rd = request.getRequestDispatcher("admin/addQuestion.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

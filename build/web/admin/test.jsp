@@ -29,8 +29,8 @@
                         <p>Correct Answer: ${x.rightOption}</p>
                     </td>
                     <td align="center">
-                        <c:url var="delete" value="TestController">
-                            <c:param name="id" value="${param.id}"/>
+                        <c:url var="delete" value="QuestionController">
+                            <c:param name="testID" value="${param.testID}"/>
                             <c:param name="questionID" value="${x.questionID}"/>
                             <c:param name="action" value="delete"/>
                         </c:url>
@@ -40,8 +40,9 @@
                     </td>
                     <td align="center">
                         <c:url var="edit" value="QuestionController">
-                            <c:param name="testID" value="${param.id}"/>
+                            <c:param name="testID" value="${param.testID}"/>
                             <c:param name="questionID" value="${x.questionID}"/>
+                            <c:param name="action" value="edit"/>
                         </c:url>
                         <a href="${edit}" onclick="return confirm('Ban co muon sua?')">
                             <img src="media/edit.png"/> Edit
@@ -49,6 +50,18 @@
                     </td>
                 </tr>
             </c:forEach>
+            <tr>
+                <td align="center">
+                    <c:url var="add" value="QuestionController">
+                        <c:param name="testID" value="${param.id}"/>
+                        <c:param name="questionID" value="${x.questionID}"/>
+                        <c:param name="action" value="add"/>
+                    </c:url>
+                    <a href="${add}" onclick="return confirm('Ban co muon them?')">
+                        <img src="media/add.png"/>
+                    </a>
+                </td>
+            </tr>
         </table>
     </body>
 </html>

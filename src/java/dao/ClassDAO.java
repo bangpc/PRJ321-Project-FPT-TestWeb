@@ -22,7 +22,7 @@ public class ClassDAO {
     public List<Classes> listClassBySubject(int SubjectID) throws Exception {
         List<Classes> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql = "select * from [class] where subjectID=" + SubjectID;
+        String sql = "select * from [class] where subjectID = " + SubjectID;
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
         while (rs.next()) {
             int testId = rs.getInt("classID");
