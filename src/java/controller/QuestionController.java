@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Question;
 import model.User;
 
 /**
@@ -50,6 +51,15 @@ public class QuestionController extends HttpServlet {
                     break;
                 case "add":
                     addQuestion(request, response);
+                    break;
+                case "Add Question":
+                    saveAddQuestion(request, response);
+                    break;
+                case "edit":
+                    editQuestion(request, response);
+                    break;
+                case "Edit Question":
+                    saveEditQuestion(request, response);
                     break;
             }
         } catch (Exception e) {
@@ -112,6 +122,56 @@ public class QuestionController extends HttpServlet {
 
         RequestDispatcher rd = request.getRequestDispatcher("admin/addQuestion.jsp");
         rd.forward(request, response);
+    }
+
+    public void saveAddQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession(true);
+        int testID = (int) session.getAttribute("testID");
+        String questionContent = request.getParameter("questionContent");
+        String opt1 = request.getParameter("opt1");
+        String opt2 = request.getParameter("opt2");
+        String opt3 = request.getParameter("opt3");
+        String opt4 = request.getParameter("opt4");
+        String rightOption = request.getParameter("rightOption");
+        QuestionDAO dao = new QuestionDAO();
+        dao.insert(testID, questionContent, opt1, opt2, opt3, opt4, rightOption);
+        response.sendRedirect("/FPT_Test/QuestionController");
+    }
+
+    public void editQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession(true);
+        int testID = 1;
+        int questionID = 1;
+        try {
+            testID = Integer.valueOf(request.getParameter("testID"));
+            questionID = Integer.valueOf(request.getParameter("questionID"));
+        } catch (Exception e) {
+            testID = (int) session.getAttribute("testID");
+            questionID = (int) session.getAttribute("questionID");
+        }
+        session.setAttribute("testID", testID);
+        session.setAttribute("questionID", questionID);
+
+        QuestionDAO dao = new QuestionDAO();
+        Question q = dao.QuestionByID(questionID);
+        request.setAttribute("question", q);
+        RequestDispatcher rd = request.getRequestDispatcher("admin/editQuestion.jsp");
+        rd.forward(request, response);
+    }
+
+    public void saveEditQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession(true);
+        int testID = (int) session.getAttribute("testID");
+        int questionID = (int) session.getAttribute("questionID");
+        String questionContent = request.getParameter("questionContent");
+        String opt1 = request.getParameter("opt1");
+        String opt2 = request.getParameter("opt2");
+        String opt3 = request.getParameter("opt3");
+        String opt4 = request.getParameter("opt4");
+        String rightOption = request.getParameter("rightOption");
+        QuestionDAO dao = new QuestionDAO();
+        dao.update(questionID, questionContent, opt1, opt2, opt3, opt4, rightOption);
+        response.sendRedirect("/FPT_Test/QuestionController");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
