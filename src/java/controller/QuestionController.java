@@ -69,7 +69,7 @@ public class QuestionController extends HttpServlet {
 
     public void listQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession(true);
-        int testID = 1;
+        int testID;
         try {
             testID = Integer.valueOf(request.getParameter("testID"));
         } catch (Exception e) {
@@ -78,7 +78,9 @@ public class QuestionController extends HttpServlet {
         session.setAttribute("testID", testID);
 
         QuestionDAO dao = new QuestionDAO();
+        TestDAO tdao = new TestDAO();
         request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
+        session.setAttribute("timeTest", tdao.getTimeTest(testID));
         User u = (User) session.getAttribute("login");
         if (u == null) {
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");

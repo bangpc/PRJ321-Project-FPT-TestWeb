@@ -29,13 +29,28 @@ public class TestDAO {
             int testId = rs.getInt("testID");
             String name = rs.getString("testName");
             int classID = rs.getInt("classID");
+            int testTime = rs.getInt("testTime");
             String subjectContent = rs.getString("testContent");
             int difficulty = rs.getInt("difficulty");
-            ls.add(new Test(testId, name, classID, subjectContent, difficulty));
+            ls.add(new Test(testId, name, classID, testTime, subjectContent, difficulty));
         }
         rs.close();
         conn.close();
         return ls;
+    }
+    public int getTimeTest(int TestID) throws Exception {
+        int timeTest = 0;
+        Connection conn = new DBContext().getConnection();
+        String sql = "select * from Test,Class where Test.classID = Class.classID";
+        List<Test> ls = new ArrayList<>();
+        ResultSet rs = conn.prepareStatement(sql).executeQuery();
+        while(rs.next()){
+            if(rs.getInt("testID") == TestID){
+                timeTest = rs.getInt("testTime");
+            }
+            break;
+        }
+        return timeTest;
     }
 
     public void delete(int id) throws Exception {

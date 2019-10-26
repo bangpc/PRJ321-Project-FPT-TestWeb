@@ -14,16 +14,28 @@ public class Test {
     private int testID;
     private String testName;
     private int classID;
+    private int testTime;
     private String testContent;
     private int difficulty;
 
-    public Test(int testID, String testName, int classID, String testContent, int difficulty) {
+    public Test(int testID, String testName, int classID, int testTime, String testContent, int difficulty) {
         this.testID = testID;
         this.testName = testName;
         this.classID = classID;
+        this.testTime = testTime;
         this.testContent = testContent;
         this.difficulty = difficulty;
     }
+
+    public int getTestTime() {
+        return testTime;
+    }
+
+    public void setTestTime(int testTime) {
+        this.testTime = testTime;
+    }
+
+    
 
     public int getTestID() {
         return testID;
