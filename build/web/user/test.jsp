@@ -38,10 +38,6 @@
                 <input type="submit" value="Submit" name="submit" />
             </form>
         </c:if>
-        <c:if test="${not empty sessionScope.mark}">
-            Your mark is
-            ${sessionScope.mark}
-            <a href="TestController?classID=${sessionScope.classID}">Go to class</a>
-        </c:if>
+        
     </body>
 </html>

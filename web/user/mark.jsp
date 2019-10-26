@@ -12,7 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        ${sessionScope.mark}
+        <c:if test="${not empty sessionScope.mark}">
+            Your mark is
+            ${sessionScope.mark}
+            <a href="TestController?classID=${sessionScope.classID}">Go to class</a>
+        </c:if>
     </body>
 </html>
