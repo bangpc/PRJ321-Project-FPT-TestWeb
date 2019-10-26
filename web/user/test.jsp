@@ -15,7 +15,7 @@
     </head>
     <body>
 
-
+        <jsp:include page="navigationBar.jsp"></jsp:include>
         <c:if test="${not empty listQuestion}">
             <form action="DoTestController">
                 <table border="1">

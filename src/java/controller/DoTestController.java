@@ -69,8 +69,8 @@ public class DoTestController extends HttpServlet {
                 
                 //Add to Mark table in database
                 MarkDAO mdao = new MarkDAO();
-//                User u = (User) session.getAttribute("acc");
-//                mdao.insertMark(u.getUserID(), testID, mark);
+                User u = (User) session.getAttribute("acc");
+                mdao.insertMark(u.getUserID(), testID, mark);
                 
                 RequestDispatcher rd = request.getRequestDispatcher("user/test.jsp");
                 rd.forward(request, response);
