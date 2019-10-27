@@ -13,7 +13,7 @@
         <title>List Test</title>
     </head>
     <body>
-        <jsp:include page="navigationBar"></jsp:include>
+        <jsp:include page="navigationBar.jsp"></jsp:include>
         <table>
             <tr>
                 <th>Tetst Name</th>
