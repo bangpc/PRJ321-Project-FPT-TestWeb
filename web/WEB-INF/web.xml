@@ -32,10 +32,6 @@
         <servlet-name>DoTestController</servlet-name>
         <servlet-class>controller.DoTestController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ConfirmDoTest</servlet-name>
-        <servlet-class>controller.ConfirmDoTest</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -67,10 +63,6 @@
     <servlet-mapping>
         <servlet-name>DoTestController</servlet-name>
         <url-pattern>/DoTestController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ConfirmDoTest</servlet-name>
-        <url-pattern>/ConfirmDoTest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

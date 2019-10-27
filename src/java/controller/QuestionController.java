@@ -39,12 +39,15 @@ public class QuestionController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             if (action == null) {
-                action = "TestInfo";
+                action = "list";
             }
 
             switch (action) {
-                case "TestInfo":
-                    testInfo(request, response);
+                case "list":
+                    listQuestion(request, response);
+                    break;
+                case "Show Question":
+                    listQuestion(request, response);
                     break;
                 case "delete":
                     deleteQuestion(request, response);

@@ -14,11 +14,11 @@
     </head>
     <body>
         <jsp:include page="navigationBar.jsp"></jsp:include>
-        <form action="ConfirmDoTest">
+        <form action="QuestionController">
             <c:if test="${not empty TestInfo}">
                 ${sessionScope.TestInfo.testID}
                 ${sessionScope.TestInfo.testContent}
-                <input type="submit" value="ShowQuestion" name="ShowQuestion" />
+                <input type="submit" value="Show Question" name="action" />
             </c:if>
         </form>
         
