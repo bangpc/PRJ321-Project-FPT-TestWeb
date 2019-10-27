@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body >
 
         <jsp:include page="navigationBar.jsp"></jsp:include>
         <c:if test="${not empty listQuestion}">

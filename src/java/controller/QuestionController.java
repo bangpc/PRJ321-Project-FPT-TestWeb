@@ -39,12 +39,12 @@ public class QuestionController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             if (action == null) {
-                action = "list";
+                action = "testInfo";
             }
 
             switch (action) {
-                case "list":
-                    listQuestion(request, response);
+                case "testInfo":
+                    testInfo(request, response);
                     break;
                 case "delete":
                     deleteQuestion(request, response);
@@ -67,6 +67,27 @@ public class QuestionController extends HttpServlet {
         }
     }
 
+    public void testInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession(true);
+        int testID;
+        try {
+            testID = Integer.valueOf(request.getParameter("testID"));
+        } catch (Exception e) {
+            testID = (int) session.getAttribute("testID");
+        }
+        session.setAttribute("testID", testID);
+        TestDAO tdao = new TestDAO();
+        session.setAttribute("TestInfo", tdao.getTest(testID));
+        User u = (User) session.getAttribute("login");
+        if (u == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+        } else {
+            RequestDispatcher rd = request.getRequestDispatcher("user/testInfo.jsp");
+            rd.forward(request, response);
+        }
+    }
+
     public void listQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession(true);
         int testID;
@@ -80,7 +101,7 @@ public class QuestionController extends HttpServlet {
         QuestionDAO dao = new QuestionDAO();
         TestDAO tdao = new TestDAO();
         request.setAttribute("listQuestion", dao.listQuestionByTest(testID));
-        session.setAttribute("timeTest", tdao.getTimeTest(testID));
+        session.setAttribute("TestInfo", tdao.getTest(testID));
         User u = (User) session.getAttribute("login");
         if (u == null) {
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
@@ -90,7 +111,7 @@ public class QuestionController extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("admin/test.jsp");
                 rd.forward(request, response);
             } else {
-                RequestDispatcher rd = request.getRequestDispatcher("user/test.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("user/doTest.jsp");
                 rd.forward(request, response);
             }
         }

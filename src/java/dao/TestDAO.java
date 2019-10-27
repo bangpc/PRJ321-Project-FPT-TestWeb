@@ -29,28 +29,33 @@ public class TestDAO {
             int testId = rs.getInt("testID");
             String name = rs.getString("testName");
             int classID = rs.getInt("classID");
-            int testTime = rs.getInt("testTime");
             String subjectContent = rs.getString("testContent");
             int difficulty = rs.getInt("difficulty");
-            ls.add(new Test(testId, name, classID, testTime, subjectContent, difficulty));
+            ls.add(new Test(testId, name, classID, subjectContent, difficulty));
         }
         rs.close();
         conn.close();
         return ls;
     }
-    public int getTimeTest(int TestID) throws Exception {
+    public Test getTest(int TestID) throws Exception {
         int timeTest = 0;
         Connection conn = new DBContext().getConnection();
-        String sql = "select * from Test,Class where Test.classID = Class.classID";
-        List<Test> ls = new ArrayList<>();
+        String sql = "select * from Test,Class where Test.classID = Class.classID and Test.testID="+TestID;
+        Test t = new Test();
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
         while(rs.next()){
-            if(rs.getInt("testID") == TestID){
-                timeTest = rs.getInt("testTime");
-            }
-            break;
+            int testId = rs.getInt("testID");
+            String name = rs.getString("testName");
+            int classID = rs.getInt("classID");
+            String subjectContent = rs.getString("testContent");
+            int difficulty = rs.getInt("difficulty");
+            t.setClassID(classID);
+            t.setDifficulty(difficulty);
+            t.setTestContent(subjectContent);
+            t.setTestID(testId);
+            t.setTestName(name);
         }
-        return timeTest;
+        return t;
     }
 
     public void delete(int id) throws Exception {
