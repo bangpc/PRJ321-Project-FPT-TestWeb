@@ -18,14 +18,13 @@
         <jsp:include page="navigationBar.jsp"></jsp:include>
         <c:if test="${not empty listQuestion}">
             <form action="DoTestController">
+                <h1 align="center">Question</h1>
                 <table border="1">
-                    <tr>
-                        <th>Question</th>
-                    </tr>
+                 
                     <c:forEach var="x" items="${listQuestion}">
 
                         <tr>
-                            <td>${x.questionContent}
+                            <td>${x.questionContent}</td><td>
                                 <p><input type="radio" name="${x.questionID}" value="1">A. ${x.opt1}</p>
                                 <p><input type="radio" name="${x.questionID}" value="2">B. ${x.opt2}</p>
                                 <p><input type="radio" name="${x.questionID}" value="3">C. ${x.opt3}</p>
@@ -38,6 +37,6 @@
                 <input type="submit" value="Submit" name="submit" />
             </form>
         </c:if>
-        
+
     </body>
 </html>

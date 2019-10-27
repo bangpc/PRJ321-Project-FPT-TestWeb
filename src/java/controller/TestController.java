@@ -45,6 +45,9 @@ public class TestController extends HttpServlet {
                 case "list":
                     listTest(request, response);
                     break;
+//                case "TestInfo":
+//                    testInfo(request, response);
+//                    break;
                 case "delete":
                     deleteTest(request, response);
                     break;
@@ -53,9 +56,30 @@ public class TestController extends HttpServlet {
                     break;
             }
         } catch (Exception e) {
+            response.getWriter().print(e);
         }
     }
-
+//    public void testInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        HttpSession session = request.getSession(true);
+//        int testID;
+//        try {
+//            testID = Integer.valueOf(request.getParameter("testID"));
+//        } catch (Exception e) {
+//            testID = (int) session.getAttribute("testID");
+//        }
+//        session.setAttribute("testID", testID);
+//        TestDAO tdao = new TestDAO();
+//        session.setAttribute("TestInfo", tdao.getTest(testID));
+//        User u = (User) session.getAttribute("login");
+//        if (u == null) {
+//            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+//            rd.forward(request, response);
+//        } else {
+//            RequestDispatcher rd = request.getRequestDispatcher("user/testInfo.jsp");
+//            rd.forward(request, response);
+//        }
+//    }
+    
     public void listTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession(true);
         int classID = 1;
