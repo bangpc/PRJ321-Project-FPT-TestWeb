@@ -14,7 +14,6 @@
     </head>
     <body>
         <jsp:include page="navigationBar.jsp"/>
-        <jsp:include page="navigationBar.jsp"></jsp:include>
         <form action="SearchController">
             <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
         </form>
