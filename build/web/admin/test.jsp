@@ -54,7 +54,7 @@
             <tr>
                 <td align="center">
                     <c:url var="add" value="QuestionController">
-                        <c:param name="testID" value="${param.id}"/>
+                        <c:param name="testID" value="${param.testID}"/>
                         <c:param name="questionID" value="${x.questionID}"/>
                         <c:param name="action" value="add"/>
                     </c:url>

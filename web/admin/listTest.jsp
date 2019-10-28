@@ -20,7 +20,7 @@
             </tr>
             <c:forEach var="x" items="${testList}">
                 <tr>
-                    <td><a href="QuestionController?testID=${x.testID}">${x.testName}</a></td>
+                    <td><a href="TestController?testID=${x.testID}&action=TestInfo">${x.testName}</a></td>
                     <td align="center">
                         <c:url var="delete" value="TestController">
                             <c:param name="classID" value="${param.classID}"/>
@@ -42,6 +42,17 @@
                     </td>
                 </tr>
             </c:forEach>
+            <tr>
+                <td align="center">
+                    <c:url var="add" value="TestController">
+                        <c:param name="classID" value="${param.classID}"/>
+                        <c:param name="action" value="add"/>
+                    </c:url>
+                    <a href="${add}" onclick="return confirm('Ban co muon them?')">
+                        <img src="media/add.png"/>
+                    </a>
+                </td>
+            </tr>
         </table>
     </body>
 </html>

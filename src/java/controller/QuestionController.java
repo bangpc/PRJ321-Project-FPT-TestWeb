@@ -133,7 +133,7 @@ public class QuestionController extends HttpServlet {
         QuestionDAO dao = new QuestionDAO();
         int questionID = Integer.valueOf(request.getParameter("questionID"));
         dao.delete(questionID);
-        response.sendRedirect("/FPT_Test/QuestionController");
+        response.sendRedirect("/FPT_TestWeb/QuestionController");
     }
 
     public void addQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -161,7 +161,7 @@ public class QuestionController extends HttpServlet {
         String rightOption = request.getParameter("rightOption");
         QuestionDAO dao = new QuestionDAO();
         dao.insert(testID, questionContent, opt1, opt2, opt3, opt4, rightOption);
-        response.sendRedirect("/FPT_Test/QuestionController");
+        response.sendRedirect("/FPT_TestWeb/QuestionController");
     }
 
     public void editQuestion(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -169,8 +169,8 @@ public class QuestionController extends HttpServlet {
         int testID = 1;
         int questionID = 1;
         try {
-            testID = Integer.valueOf(request.getParameter("testID"));
             questionID = Integer.valueOf(request.getParameter("questionID"));
+            testID = Integer.valueOf(request.getParameter("testID"));
         } catch (Exception e) {
             testID = (int) session.getAttribute("testID");
             questionID = (int) session.getAttribute("questionID");
@@ -197,7 +197,7 @@ public class QuestionController extends HttpServlet {
         String rightOption = request.getParameter("rightOption");
         QuestionDAO dao = new QuestionDAO();
         dao.update(questionID, questionContent, opt1, opt2, opt3, opt4, rightOption);
-        response.sendRedirect("/FPT_Test/QuestionController");
+        response.sendRedirect("/FPT_TestWeb/QuestionController");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -21,7 +21,7 @@
                 <tr><td>Option 4</td> <td><input type="text" name="opt4" value="${question.opt4}" /></td></tr>
                 <tr><td>Right Option</td> <td><input type="text" name="rightOption" value="${question.rightOption}" /></td></tr>
             </table>
-            <p><input type="submit" value="Edit Question" name="action" /></p>
+            <p><input type="submit" value="Edit Test" name="action" /></p>
         </form>
     </body>
 </html>
