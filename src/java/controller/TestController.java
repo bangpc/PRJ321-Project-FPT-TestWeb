@@ -132,7 +132,7 @@ public class TestController extends HttpServlet {
         TestDAO dao = new TestDAO();
         int testID = Integer.valueOf(request.getParameter("testID"));
         dao.delete(testID);
-        response.sendRedirect("/FPT_TestWeb/TestController");
+        response.sendRedirect("TestController");
     }
 
     public void addTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -160,7 +160,7 @@ public class TestController extends HttpServlet {
         TestDAO dao = new TestDAO();
         dao.insert(testName, classID, testContent, difficulty);
         int testID = dao.getNewTestID(classID);
-        response.sendRedirect("/FPT_TestWeb/QuestionController?testID=" + testID);
+        response.sendRedirect("QuestionController?testID=" + testID);
     }
 
     public void editTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -190,7 +190,7 @@ public class TestController extends HttpServlet {
 
         TestDAO dao = new TestDAO();
         dao.update(testID, testName, testContent, difficulty);
-        response.sendRedirect("/FPT_TestWeb/TestController?action=TestInfo");
+        response.sendRedirect("TestController?action=TestInfo");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -53,7 +53,7 @@
             <div class="topnav-right">
                 <c:if test="${not empty sessionScope.login}">
                     <a href="home">Welcome ${sessionScope.login.username}</a>
-                    <a href="/FPT_Test/LogoutController">
+                    <a href="LogoutController">
                         <img src="media/signout.png"/> Sign out
                     </a> 
                 </c:if>

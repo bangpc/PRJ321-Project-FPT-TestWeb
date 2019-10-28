@@ -93,7 +93,7 @@ public class ClassController extends HttpServlet {
         ClassDAO dao = new ClassDAO();
         int classID = Integer.valueOf(request.getParameter("classID"));
         dao.delete(classID);
-        response.sendRedirect("/FPT_Test/ClassController");
+        response.sendRedirect("ClassController");
     }
 
     public void addClass(HttpServletRequest request, HttpServletResponse response) throws Exception {
