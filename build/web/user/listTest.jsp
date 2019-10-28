@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="navigationBar.jsp"/>
         <table>
             <tr>
                 <th>Tetst Name</th>

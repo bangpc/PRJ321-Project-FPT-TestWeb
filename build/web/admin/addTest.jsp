@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="navigationBar.jsp"/>
         <form action="TestController">
             <table>
                 <tr><td>Test name</td> <td><input type="text" name="testName" value="" /></td></tr>

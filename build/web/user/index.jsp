@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <jsp:include page="navigationBar.jsp"></jsp:include>
+        <jsp:include page="navigationBar.jsp"/>
         <form action="SearchController">
             <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
         </form>

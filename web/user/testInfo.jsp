@@ -16,8 +16,8 @@
         <jsp:include page="navigationBar.jsp"></jsp:include>
         <form action="QuestionController">
             <c:if test="${not empty TestInfo}">
-                ${sessionScope.TestInfo.testID}
-                ${sessionScope.TestInfo.testContent}
+                ${TestInfo.testID}
+                ${TestInfo.testContent}
                 <input type="submit" value="Show Question" name="action" />
             </c:if>
         </form>

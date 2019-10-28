@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="navigationBar.jsp"/>
         <form action="QuestionController">
             <table>
                 <tr><td>Question Content</td> <td><textarea name="questionContent" rows="4" cols="40"></textarea></td></tr>
