@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
 
         <c:if test="${not empty TestInfo}">
@@ -30,6 +31,6 @@
                 </p>
             </form>
         </c:if>
-
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

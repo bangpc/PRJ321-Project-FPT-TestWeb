@@ -52,6 +52,9 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "header.jsp", out, false);
+      out.write("\r\n");
+      out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "navigationBar.jsp", out, false);
       out.write("\r\n");
       out.write("        <form action=\"LoginController\">\r\n");
@@ -61,7 +64,9 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </table>\r\n");
       out.write("            <p><input type=\"submit\" value=\"Login\" name=\"submit\" /></p>\r\n");
       out.write("        </form>\r\n");
-      out.write("        If you do not have an account click <a href=\"register.jsp\">here</a> to register\r\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "footer.jsp", out, false);
+      out.write("\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

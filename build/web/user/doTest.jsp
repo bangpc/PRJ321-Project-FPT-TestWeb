@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body >
-
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
         <c:if test="${not empty listQuestion}">
             <form action="DoTestController">
@@ -37,6 +37,6 @@
                 <input type="submit" value="Submit" name="submit" />
             </form>
         </c:if>
-
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

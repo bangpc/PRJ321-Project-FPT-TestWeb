@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>List Class</title>
         <style>
             * {
                 box-sizing: border-box;
@@ -56,6 +56,7 @@
         </style>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
         <div class="row">
             <c:forEach var="x" items="${classList}">
@@ -95,5 +96,6 @@
                 </div>
             </div>
         </div>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

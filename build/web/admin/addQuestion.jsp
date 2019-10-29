@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
         <form action="QuestionController">
             <table>
@@ -24,5 +25,6 @@
             </table>
             <p><input type="submit" value="Add Question" name="action" /></p>
         </form>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

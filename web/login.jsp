@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"></jsp:include>
         <form action="LoginController">
             <table>
@@ -20,6 +21,6 @@
             </table>
             <p><input type="submit" value="Login" name="submit" /></p>
         </form>
-        If you do not have an account click <a href="register.jsp">here</a> to register
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

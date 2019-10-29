@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Edit Test</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
         <form action="TestController">
             <table>
@@ -21,5 +22,6 @@
             </table>
             <p><input type="submit" value="Save Info" name="action" /></p>
         </form>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

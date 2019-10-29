@@ -13,6 +13,7 @@
         <title>Test Manipulation</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"></jsp:include>
         <table border="1">
             <tr>
@@ -64,5 +65,6 @@
                 </td>
             </tr>
         </table>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

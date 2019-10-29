@@ -20,6 +20,9 @@ public class MarkDAO {
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, userID);
         ps.setInt(2, testID);
-        ps.setDouble(1, Mark);
+        ps.setDouble(3, Mark);
+        ps.executeUpdate();
+        ps.close();
+        conn.close();
     }
 }

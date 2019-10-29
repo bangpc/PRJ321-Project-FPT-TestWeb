@@ -12,9 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"></jsp:include>
-        <form action="RegisterController">
-            <c:if test="${not empty errorRegister}">
+            <form action="RegisterController">
+                <c:if test="${not empty errorRegister}">
                 <p style="color: red">${errorRegister}</p>
             </c:if>
             <table>
@@ -23,7 +24,7 @@
                 <tr><td>Password</td><td><input type="password" name="password"/></td></tr>
             </table>
             <p><input type="submit" name="submit" value="Register"/></p>
-            <p>If you have an account click <a href="login.jsp">here</a> to login
         </form>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>

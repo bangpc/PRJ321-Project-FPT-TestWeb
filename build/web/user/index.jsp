@@ -10,9 +10,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>List Subject</title>
     </head>
+    <style>
+        .footer{
+            position: absolute
+        }
+    </style>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
         <form action="SearchController">
             <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
@@ -26,5 +32,8 @@
                 </tr>
             </c:forEach>
         </table>
-    </body>
+        <div class="footer">
+        <jsp:include page="footer.jsp"/>
+        </div>
+        </body>
 </html>

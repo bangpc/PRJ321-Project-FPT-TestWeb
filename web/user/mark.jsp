@@ -12,11 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
-        <c:if test="${not empty sessionScope.mark}">
-            Your mark is
-            ${sessionScope.mark}
-            <p><a href="TestController?classID=${sessionScope.classID}">Go to class</a></p>
-        </c:if>
-    </body>
+    <c:if test="${not empty sessionScope.mark}">
+        Your mark is
+        ${sessionScope.mark}
+        <p><a href="TestController?classID=${sessionScope.classID}">Go to class</a></p>
+    </c:if>
+    <jsp:include page="footer.jsp"/>
+</body>
 </html>

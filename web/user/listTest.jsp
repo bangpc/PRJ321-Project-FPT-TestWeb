@@ -10,13 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>List Test</title>
     </head>
     <body>
+        <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
         <table>
             <tr>
-                <th>Tetst Name</th>
+                <th>Test Name</th>
             </tr>
             <c:forEach var="x" items="${testList}">
                 <tr>
@@ -24,5 +25,6 @@
                 </tr>
             </c:forEach>
         </table>
+        <jsp:include page="footer.jsp"/>
     </body>
 </html>
