@@ -14,6 +14,7 @@
     <body>
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"></jsp:include>
+        
         <form action="LoginController">
             <table>
                 <tr><td>Username</td> <td><input type="text" name="username"/></td></tr>
