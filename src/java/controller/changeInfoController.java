@@ -46,7 +46,7 @@ public class changeInfoController extends HttpServlet {
                 UserDAO dao = new UserDAO();
                 List<User> ls = dao.listUser();
                 for (User u : ls) {
-                    if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                    if (u.getUserID() == userID) {
                         isValidUser = true;
                     }
                 }
