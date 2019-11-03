@@ -52,7 +52,7 @@
             <a href="https://github.com/tadangkhoa1999/FPT_Test">About</a>
             <div class="topnav-right">
                 <c:if test="${not empty sessionScope.login}">
-                    <a href="user/changeInfo.jsp">Welcome ${sessionScope.login.username}</a>
+                    <a href="changeInfoController">Welcome ${sessionScope.login.username}</a>
                     <a href="LogoutController">
                         <img src="media/signout.png"/> Sign out
                     </a> 

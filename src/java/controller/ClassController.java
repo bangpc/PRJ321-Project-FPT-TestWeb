@@ -78,7 +78,11 @@ public class ClassController extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("admin/listClass.jsp");
                 rd.forward(request, response);
 
-            } else {
+            }else if(u.getUserType() == 2){
+                RequestDispatcher rd = request.getRequestDispatcher("user/listClass.jsp");
+                rd.forward(request, response);
+            } 
+            else {
                 RequestDispatcher rd = request.getRequestDispatcher("listClass.jsp");
                 rd.forward(request, response);
             }

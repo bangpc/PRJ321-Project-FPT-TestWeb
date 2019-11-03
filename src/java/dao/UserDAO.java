@@ -37,7 +37,25 @@ public class UserDAO {
         conn.close();
         return ls;
     }
-
+    
+    public User selectbyId(int id) throws Exception {
+        Connection conn = new DBContext().getConnection();
+        String sql = "select * from [User] where userID = " + id ;
+        ResultSet rs = conn.prepareStatement(sql).executeQuery();
+        User u = new User();
+        while (rs.next()) {
+            int userID = rs.getInt("userID");
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            String email = rs.getString("email");
+            int userType = rs.getInt("userType");
+            u = new User(userID, username, password, email, userType);
+        }
+        rs.close();
+        conn.close();
+        return u;
+    }
+    
     public User select(String name) throws Exception {
         Connection conn = new DBContext().getConnection();
         String sql = "select * from [User] where username = '" + name + "'";
@@ -67,5 +85,15 @@ public class UserDAO {
         ps.executeUpdate();
         ps.close();
         con.close();
+    }
+    public void changeInfo(int userId,String username, String password, String email) throws Exception{
+        String sql = "UPDATE [User] SET [username] = ?,[password] = ? where userID="+userId;
+        Connection conn = new DBContext().getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, username);
+        ps.setString(2, password);
+        ps.executeUpdate();
+        ps.close();
+        conn.close();
     }
 }
