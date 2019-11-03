@@ -11,8 +11,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Do Test</title>
     </head>
+    <%int count = 0;%>
     <body >
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
@@ -22,9 +23,9 @@
                 <table border="1">
                  
                     <c:forEach var="x" items="${listQuestion}">
-
+                        
                         <tr>
-                            <td>${x.questionContent}</td><td>
+                            <td style="width: 60%"><%=++count%>, ${x.questionContent}</td><td style="width: 40%">
                                 <p><input type="radio" name="${x.questionID}" value="1">A. ${x.opt1}</p>
                                 <p><input type="radio" name="${x.questionID}" value="2">B. ${x.opt2}</p>
                                 <p><input type="radio" name="${x.questionID}" value="3">C. ${x.opt3}</p>
@@ -34,7 +35,7 @@
                     </c:forEach>
 
                 </table>
-                <input type="submit" value="Submit" name="submit" />
+                <h1 align="center"><input type="submit" value="Submit" name="submit" /></h1>
             </form>
         </c:if>
         <jsp:include page="footer.jsp"/>

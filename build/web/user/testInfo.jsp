@@ -16,15 +16,21 @@
         .footer{
             position: absolute
         }
+        .body{
+            align-content: center
+        }
     </style>
     <body>
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
         <form action="QuestionController">
             <c:if test="${not empty TestInfo}">
-                ${TestInfo.testID}
-                ${TestInfo.testContent}
-                <input type="submit" value="Show Question" name="action" />
+                
+                <h1>${TestInfo.testName}</h1>
+                <p>${TestInfo.testContent}
+                
+                <p><input type="submit" value="Show Question" name="action" />
+              
             </c:if>
         </form>
         <div class="footer">
