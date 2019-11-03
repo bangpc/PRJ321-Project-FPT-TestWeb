@@ -36,45 +36,60 @@ public class changeInfoController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            boolean isValidUser = false;
-            boolean checkRePass = false;
-            int userID = Integer.valueOf(request.getParameter("userid"));
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            String repassword = request.getParameter("repassword");
-            UserDAO dao = new UserDAO();
-            List<User> ls = dao.listUser();
-            for (User u : ls) {
-                if(u.getUsername().equals(username) && u.getPassword().equals(password)){
-                    isValidUser = true;
+            if (request.getParameter("change") != null) {
+                boolean isValidUser = false;
+                boolean checkRePass = false;
+                int userID = Integer.valueOf(request.getParameter("userid"));
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
+                String repassword = request.getParameter("repassword");
+                UserDAO dao = new UserDAO();
+                List<User> ls = dao.listUser();
+                for (User u : ls) {
+                    if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                        isValidUser = true;
+                    }
+                }
+                if (password.equals(repassword)) {
+                    checkRePass = true;
+                }
+                if (!isValidUser) {
+                    request.setAttribute("error", "Invalid username or password");
+                }
+                if (!checkRePass) {
+                    request.setAttribute("error", "Confirm password wrong");
+                }
+                if (isValidUser && checkRePass) {
+                    HttpSession session = request.getSession(true);
+                    dao.changeInfo(userID, username, password, username);
+                    request.setAttribute("message", "Change Success");
+                    session.setAttribute("login", dao.selectbyId(userID));
+                    if (dao.selectbyId(userID).getUserType() == 1) {
+                        RequestDispatcher rd = request.getRequestDispatcher("admin/changeInfo.jsp");
+                        rd.forward(request, response);
+                    } else if (dao.selectbyId(userID).getUserType() == 2) {
+                        RequestDispatcher rd = request.getRequestDispatcher("user/changeInfo.jsp");
+                        rd.forward(request, response);
+                    }
+
                 }
             }
-            if(password.equals(repassword)){
-                checkRePass = true;
+            HttpSession session = request.getSession(true);
+            User u = (User) session.getAttribute("login");
+            if (u == null) {
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.forward(request, response);
+            } else if(u.getUserType()==1){
+                RequestDispatcher rd = request.getRequestDispatcher("admin/changeInfo.jsp");
+                rd.forward(request, response);
+            } else if(u.getUserType()==2){
+                RequestDispatcher rd = request.getRequestDispatcher("user/changeInfo.jsp");
+                rd.forward(request, response);
             }
-            if(!isValidUser){
-                request.setAttribute("error", "Invalid username or password");
-            }
-            if(!checkRePass){
-                request.setAttribute("error", "Confirm password wrong");
-            }
-            if(isValidUser && checkRePass){
-                HttpSession session = request.getSession(true);
-                dao.changeInfo(userID, username, password, username);
-                request.setAttribute("message", "Change Success");
-                session.setAttribute("login", dao.selectbyId(userID));
-                if(dao.selectbyId(userID).getUserType() == 1){
-                    RequestDispatcher rd = request.getRequestDispatcher("admin/changeInfo.jsp");
-                    rd.forward(request, response);
-                }else if(dao.selectbyId(userID).getUserType() == 2){
-                    RequestDispatcher rd = request.getRequestDispatcher("user/changeInfo.jsp");
-                    rd.forward(request, response);
-                }
-                
-                }
         } catch (Exception e) {
             response.getWriter().print(e);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
