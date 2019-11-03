@@ -48,7 +48,7 @@
     <body>
         <div class="topnav">
             <a class="active" href="home">Home</a>
-            <a href="response.jsp">Response</a>
+            <a href="ResponseController?action=makeResponse">Response</a>
             <a href="https://github.com/tadangkhoa1999/FPT_Test">About</a>
             <div class="topnav-right">
                 <c:if test="${not empty sessionScope.login}">

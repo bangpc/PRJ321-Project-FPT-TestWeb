@@ -13,15 +13,17 @@ public class UserResponse {
 
     private int responseID;
     private int userID;
+    private String username;
     private String title;
     private String responseContent;
 
     public UserResponse() {
     }
 
-    public UserResponse(int responseID, int userID, String title, String responseContent) {
+    public UserResponse(int responseID, int userID, String username, String title, String responseContent) {
         this.responseID = responseID;
         this.userID = userID;
+        this.username = username;
         this.title = title;
         this.responseContent = responseContent;
     }
@@ -40,6 +42,14 @@ public class UserResponse {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTitle() {

@@ -36,10 +36,10 @@
                     <td align="center">
                         <c:url var="edit" value="TestController">
                             <c:param name="testID" value="${x.testID}"/>
-                            <c:param name="action" value="edit"/>
+                            <c:param name="action" value="Edit Info"/>
                         </c:url>
                         <a href="${edit}" onclick="return confirm('Ban co muon sua?')">
-                            <img src="media/edit.png"/> Edit
+                            <img src="media/edit.png"/> Edit Info
                         </a>
                     </td>
                 </tr>
