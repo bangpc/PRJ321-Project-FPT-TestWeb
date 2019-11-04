@@ -74,7 +74,7 @@
                     <input type="text" name="SearchSubject"/>&nbsp;<button>Search</button>
                 </form>-->
         <form class="example" action="SearchController" style="margin:auto;max-width:300px">
-            <input type="text" placeholder="Search.." name="search2">
+            <input type="text" placeholder="Search.." name="searchName">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
         <p style="text-align: center"> Subject
