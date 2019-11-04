@@ -14,7 +14,8 @@ import java.sql.PreparedStatement;
  * @author BangPC
  */
 public class MarkDAO {
-    public void insertMark(int userID, int testID, double Mark) throws Exception{
+
+    public void insertMark(int userID, int testID, double Mark) throws Exception {
         String sql = "INSERT Mark VALUES(?,?,?)";
         Connection conn = new DBContext().getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
