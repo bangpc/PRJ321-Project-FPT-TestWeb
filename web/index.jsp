@@ -34,7 +34,8 @@
 
             form.example button {
                 float: left;
-                width: 20%;
+                width: 60px;
+                height: 48px;
                 padding: 10px;
                 background: #2196F3;
                 color: white;
@@ -66,12 +67,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <div style="background-color: #cccccc" style="align-self: auto">
-            <div class="w3-content w3-section" style="max-width:500px">
+            <div class="w3-content w3-section" style="max-width:500px" style="max-height: 300px">
 
-                <img class="mySlides w3-animate-fading" src="media/slideshow1.jpg" style="width:100%">
-                <img class="mySlides w3-animate-fading" src="media/slideshow2.jpg" style="width:100%">
-                <img class="mySlides w3-animate-fading" src="media/slideshow3.jpg" style="width:100%">
-                <img class="mySlides w3-animate-fading" src="media/slideshow4.jpg" style="width:100%">
+                <img class="mySlides w3-animate-fading" src="media/slideshow1.jpg" style="width:500px">
+                <img class="mySlides w3-animate-fading" src="media/slideshow2.jpg" style="width:500px">
+                <img class="mySlides w3-animate-fading" src="media/slideshow3.jpg" style="width:500px">
+                <img class="mySlides w3-animate-fading" src="media/slideshow4.jpg" style="width:500px">
             </div>
         </div>
         <script>
