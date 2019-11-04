@@ -35,11 +35,27 @@ public class ClassDAO {
         conn.close();
         return ls;
     }
-    
+
+    public Classes getClasses(int classID) throws Exception {
+        Connection conn = new DBContext().getConnection();
+        String sql = "select * from [class] where classID = " + classID;
+        ResultSet rs = conn.prepareStatement(sql).executeQuery();
+        rs.next();
+        int testId = rs.getInt("classID");
+        String name = rs.getString("className");
+        int subjectID = rs.getInt("subjectID");
+        String classContent = rs.getString("classContent");
+        Classes c = new Classes(testId, subjectID, name, classContent);
+
+        rs.close();
+        conn.close();
+        return c;
+    }
+
     public List<Classes> search(String searchText) throws Exception {
         List<Classes> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql = "select * from [class] where className like '" + searchText + "'";
+        String sql = "select * from [class] where className like '%" + searchText + "%'";
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
         while (rs.next()) {
             int testId = rs.getInt("classID");

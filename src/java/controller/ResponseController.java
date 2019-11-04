@@ -76,7 +76,7 @@ public class ResponseController extends HttpServlet {
         HttpSession session = request.getSession(true);
         User u = (User) session.getAttribute("login");
         
-        if (u.getUserType() != 2) {
+        if (u == null) {
             RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
             rd.forward(request, response);
         } else {

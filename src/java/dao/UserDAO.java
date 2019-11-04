@@ -41,7 +41,7 @@ public class UserDAO {
     public List<User> search(String searchText) throws Exception {
         List<User> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql = "select * from [User] where username like '" + searchText + "'";
+        String sql = "select * from [User] where username like '%" + searchText + "%'";
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
         while (rs.next()) {
             int userID = rs.getInt("userID");

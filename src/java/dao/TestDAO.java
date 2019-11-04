@@ -41,7 +41,7 @@ public class TestDAO {
     public List<Test> search(String searchText) throws Exception {
         List<Test> ls = new ArrayList<>();
         Connection conn = new DBContext().getConnection();
-        String sql = "select * from Test where testName like '" + searchText + "'";
+        String sql = "select * from Test where testName like '%" + searchText + "%'";
         ResultSet rs = conn.prepareStatement(sql).executeQuery();
         while (rs.next()) {
             int testId = rs.getInt("testID");

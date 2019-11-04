@@ -99,12 +99,10 @@
         <p>
 
         </p>
-        <c:if test="${empty listClass}">
-            <h2 style="color: red">
-                Can't find any class
-            </h2>
-        </c:if>
         <c:if test="${not empty listClass}">
+            <h2>
+                Class:
+            </h2>
             <div class="row">
                 <c:forEach var="x" items="${listClass}">
                     <div class="column">
@@ -116,6 +114,33 @@
                     </div>
                 </c:forEach>
             </div>
+        </c:if>
+        <c:if test="${not empty listTest}">
+            <h2>
+                Test:
+            </h2>
+            <div class="row">
+                <c:forEach var="x" items="${listTest}">
+                    <div class="column">
+                        <div class="card">
+                            <h3>Test</h3>
+                            <p><a href="TestController?testID=${x.testID}&action=TestInfo">${x.testName}</a></p>
+                            <p>${x.classes.className}</p>
+                            <p>${x.classes.classContent}</p>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </c:if>
+        <c:if test="${not empty listUser}">
+            <h2>
+                User:
+            </h2>
+            <ul style="list-style-type:none;">
+                <c:forEach var="x" items="${listUser}">
+                    <li><a href="UserController?userID=${x.userID}&action=info">${x.username}</a></li>
+                </c:forEach>
+            </ul>
         </c:if>
         <p>
 

@@ -5,24 +5,18 @@
  */
 package controller;
 
-import dao.ClassDAO;
-import dao.TestDAO;
-import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
  * @author dell
  */
-public class SearchController extends HttpServlet {
+public class UserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,32 +31,8 @@ public class SearchController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session = request.getSession(true);
-            User u = (User) session.getAttribute("login");
-            String searchText = request.getParameter("searchText");
 
-            ClassDAO ClassDAO = new ClassDAO();
-            TestDAO TestDAO = new TestDAO();
-            UserDAO UserDAO = new UserDAO();
-            
-            if (u == null) {
-                request.setAttribute("listClass", ClassDAO.search(searchText));
-                RequestDispatcher rd = request.getRequestDispatcher("resultSearch.jsp");
-                rd.forward(request, response);
-            } else if (u.getUserType() == 1) {
-                request.setAttribute("listClass", ClassDAO.search(searchText));
-                request.setAttribute("listTest", TestDAO.search(searchText));
-                request.setAttribute("listUser", UserDAO.search(searchText));
-                RequestDispatcher rd = request.getRequestDispatcher("admin/resultSearch.jsp");
-                rd.forward(request, response);
-            } else {
-                request.setAttribute("listClass", ClassDAO.search(searchText));
-                request.setAttribute("listTest", TestDAO.search(searchText));
-                RequestDispatcher rd = request.getRequestDispatcher("user/resultSearch.jsp");
-                rd.forward(request, response);
-            }
         } catch (Exception e) {
-            response.getWriter().print(e);
         }
     }
 

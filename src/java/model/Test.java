@@ -5,6 +5,8 @@
  */
 package model;
 
+import dao.ClassDAO;
+
 /**
  *
  * @author dell
@@ -27,7 +29,6 @@ public class Test {
 
     public Test() {
     }
-    
 
     public int getTestID() {
         return testID;
@@ -69,4 +70,8 @@ public class Test {
         this.difficulty = difficulty;
     }
 
+    public Classes getClasses() throws Exception {
+        ClassDAO ClassDAO = new ClassDAO();
+        return ClassDAO.getClasses(classID);
+    }
 }
