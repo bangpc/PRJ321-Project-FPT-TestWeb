@@ -5,12 +5,18 @@
  */
 package controller;
 
+import dao.ClassDAO;
+import dao.TestDAO;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -30,17 +36,33 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SearchController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SearchController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try {
+            HttpSession session = request.getSession(true);
+            User u = (User) session.getAttribute("login");
+            String searchText = request.getParameter("searchText");
+
+            ClassDAO ClassDAO = new ClassDAO();
+            TestDAO TestDAO = new TestDAO();
+            UserDAO UserDAO = new UserDAO();
+
+            if (u == null) {
+                request.setAttribute("listClass", ClassDAO.search(searchText));
+                RequestDispatcher rd = request.getRequestDispatcher("resultSearch.jsp");
+                rd.forward(request, response);
+            } else if (u.getUserType() == 1) {
+                request.setAttribute("listClass", ClassDAO.search(searchText));
+                request.setAttribute("listTest", TestDAO.search(searchText));
+                request.setAttribute("listUser", UserDAO.search(searchText));
+                RequestDispatcher rd = request.getRequestDispatcher("admin/resultSearch.jsp");
+                rd.forward(request, response);
+            } else {
+                request.setAttribute("listClass", ClassDAO.search(searchText));
+                request.setAttribute("listTest", TestDAO.search(searchText));
+                RequestDispatcher rd = request.getRequestDispatcher("admin/resultSearch.jsp");
+                rd.forward(request, response);
+            }
+        } catch (Exception e) {
+            response.getWriter().print(e);
         }
     }
 

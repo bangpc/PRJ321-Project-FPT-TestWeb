@@ -38,6 +38,24 @@ public class TestDAO {
         return ls;
     }
 
+    public List<Test> search(String searchText) throws Exception {
+        List<Test> ls = new ArrayList<>();
+        Connection conn = new DBContext().getConnection();
+        String sql = "select * from Test where testName like '" + searchText + "'";
+        ResultSet rs = conn.prepareStatement(sql).executeQuery();
+        while (rs.next()) {
+            int testId = rs.getInt("testID");
+            String name = rs.getString("testName");
+            int classID = rs.getInt("classID");
+            String subjectContent = rs.getString("testContent");
+            int difficulty = rs.getInt("difficulty");
+            ls.add(new Test(testId, name, classID, subjectContent, difficulty));
+        }
+        rs.close();
+        conn.close();
+        return ls;
+    }
+
     public int getNewTestID(int ClassID) throws Exception {
         Connection conn = new DBContext().getConnection();
         String sql = "select * from Test where ClassID = " + ClassID;

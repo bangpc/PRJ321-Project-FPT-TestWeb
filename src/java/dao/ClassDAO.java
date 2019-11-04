@@ -35,6 +35,23 @@ public class ClassDAO {
         conn.close();
         return ls;
     }
+    
+    public List<Classes> search(String searchText) throws Exception {
+        List<Classes> ls = new ArrayList<>();
+        Connection conn = new DBContext().getConnection();
+        String sql = "select * from [class] where className like '" + searchText + "'";
+        ResultSet rs = conn.prepareStatement(sql).executeQuery();
+        while (rs.next()) {
+            int testId = rs.getInt("classID");
+            String name = rs.getString("className");
+            int subjectID = rs.getInt("subjectID");
+            String classContent = rs.getString("classContent");
+            ls.add(new Classes(testId, subjectID, name, classContent));
+        }
+        rs.close();
+        conn.close();
+        return ls;
+    }
 
     public void delete(int id) throws Exception {
         String query = "delete from [class] where classid = " + id;

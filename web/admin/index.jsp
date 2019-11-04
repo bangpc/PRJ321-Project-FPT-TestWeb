@@ -16,7 +16,7 @@
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigationBar.jsp"/>
         <form action="SearchController">
-            <input type="text" name="searchName"/>&nbsp;<button>Search</button>
+            <input type="text" name="searchText"/>&nbsp;<button>Search</button>
         </form>
         <table>
             <c:forEach var="x" items="${listSubject}">
